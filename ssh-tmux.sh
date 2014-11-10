@@ -19,7 +19,7 @@ connect_to_servers() {
         else
             local pane_command="tmux split-window -h '$ssh_command'"
             eval $pane_command
-            tmux select-layout tiled > /dev/null
+            tmux select-layout tiled > /dev/null 2>&1
         fi
     done < $hostfile
         

@@ -17,7 +17,7 @@ arguments="$@"
 get_command() {
 	local regexp="s/\[\]/"$1"/g"
 	local result="$(echo $arguments | sed -e $regexp)"
-	printf "$result"
+	printf $result
 }
 
 while read line
