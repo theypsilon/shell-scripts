@@ -15,13 +15,14 @@ shift
 arguments="$@"
 
 get_command() {
-	local result=${arguments//_/$1}
+	local regexp="s/_/"$1"/g"
+	local result="$(echo $arguments | sed -e $regexp)"
 	printf "$result"
 }
 
 while read line
 do
-	$(get_command $line) &> $line.log &
+	$(get_command $line) > $line.log 2>&1 &
 done < $file
 
 wait
