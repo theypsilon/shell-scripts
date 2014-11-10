@@ -4,7 +4,7 @@ set -e
 
 if [ $# -lt 2 ]; then
 	echo "Usage: $0 placeholderfile command"
-	echo "Example: $0 servers.txt ssh _ ls /var/log"
+	echo "Example: $0 servers.txt ssh [] ls /var/log"
 	exit 1
 fi
 
@@ -15,7 +15,7 @@ shift
 arguments="$@"
 
 get_command() {
-	local regexp="s/_/"$1"/g"
+	local regexp="s/\[\]/"$1"/g"
 	local result="$(echo $arguments | sed -e $regexp)"
 	printf "$result"
 }
