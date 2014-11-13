@@ -5,6 +5,7 @@ set -e
 if [ $# -lt 2 ]; then
 	echo "Usage: $0 placeholderfile command"
 	echo "Example: $0 servers.txt ssh [] ls /var/log"
+	echo "    [] is gonna be replaced with the lines of placeholderfile"
 	exit 1
 fi
 
