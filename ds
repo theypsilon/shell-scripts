@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+readonly LOG_FILE="/var/log/ds.log"
+
+if [ $# -eq 0 ]; then
+    if [ -f $LOG_FILE ]; then
+        cat $LOG_FILE
+        echo; echo "# Log stored in $LOG_FILE"
+    else
+        echo "No arguments supplied"
+    fi
+    exit
+fi
+
+if test -t 1; then
+    exec 1>>$LOG_FILE
+fi
+
+if test -t 2; then
+    exec 2>>$LOG_FILE
+fi
+
+LANG=en_US
+echo; echo "[$(date) | $PWD ]>\$ $@"
+"$@" &
