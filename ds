@@ -1,8 +1,10 @@
 #!/bin/sh
 
-set -e
-
+# Detached shell, an improved 'command &'
+# Usage: ds [commands]
 readonly LOG_FILE="/var/log/ds.log"
+
+set -e
 
 if [ $# -eq 0 ]; then
     if [ -f $LOG_FILE ]; then
